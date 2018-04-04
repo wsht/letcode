@@ -53,6 +53,7 @@ func main() {
 	input := "abcdef"
 	num := 3
 	// fmt.Println(reverseStrII_1(input, num))
+	fmt.Println(reverseString_I(input))
 	fmt.Println(reverseStrII_2(input, num))
 }
 
