@@ -29,7 +29,6 @@ func swap(c []rune, l int, r int) {
 		r--
 	}
 }
-
 func reverseStrII_2(s string, k int) string {
 	strlen := len(s)
 	start := 0
@@ -49,13 +48,13 @@ func reverseStrII_2(s string, k int) string {
 	return string(strBuf)
 }
 
-func main() {
-	input := "abcdef"
-	num := 3
-	// fmt.Println(reverseStrII_1(input, num))
-	fmt.Println(reverseString_I(input))
-	fmt.Println(reverseStrII_2(input, num))
-}
+// func main() {
+// 	input := "abcdef"
+// 	num := 3
+// 	// fmt.Println(reverseStrII_1(input, num))
+
+// 	fmt.Println(reverseStrII_2(input, num))
+// }
 
 ///这个函数对于题目理解错了 所以结果不正确
 // func reverseStrII_1(s string, k int) string {
