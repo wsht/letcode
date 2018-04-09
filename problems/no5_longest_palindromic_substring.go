@@ -66,6 +66,8 @@ func longestPalindrome_shffixTree(s string) string {
 input:abcdasdfghjkldcba
 output: dcba
 expected:"a"
+
+https://en.wikipedia.org/wiki/Longest_common_substring_problem
 */
 func longestCommonSubstr(str1 []byte, str2 []byte) string {
 
@@ -199,8 +201,10 @@ func longestPalindrome_5(s string) string {
 	return s[(centerIndex-1-maxLen)/2 : (centerIndex-1+maxLen)/2]
 }
 
-func main() {
-	// fmt.Println(longestPalindrome("eabcb"))
-	// fmt.Println(longestPalindrome_4("abacd"))
-	fmt.Println(longestPalindrome_5("babcbabcbaccba"))
-}
+// func main() {
+// fmt.Println(longestPalindrome("eabcb"))
+// fmt.Println(longestPalindrome_4("abacd"))
+// fmt.Println(longestPalindrome_5("babcbabcbaccba"))
+// }
+
+//todo suffix trees
