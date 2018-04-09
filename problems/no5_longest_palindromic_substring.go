@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 /**
-soluction with O(n^3)
+time O(n^3)
+spqce O(n)
 */
 func longestPalindrome(s string) string {
 	strLen := len(s)
@@ -40,6 +42,104 @@ func longestPalindrome(s string) string {
 	return ""
 }
 
+/**
+time O(n^2)
+space O(n^2)
+*/
+
+func longestPalindrome_shffixTree(s string) string {
+	str1 := []byte{byte(" "[0])}
+	str2 := []byte{byte(" "[0])}
+	strlen := len(s)
+	for i := 0; i < strlen; i++ {
+		str1 = append(str1, s[i])
+		str2 = append(str2, s[strlen-i-1])
+	}
+
+	return longestCommonSubstr(str1, str2)
+}
+
+//todo check if the substring's indices are the same as the reversed substring's original indices
+/**
+最大公共子串查找
+应用次方法 有一个问题
+input:abcdasdfghjkldcba
+output: dcba
+expected:"a"
+*/
+func longestCommonSubstr(str1 []byte, str2 []byte) string {
+
+	str1Len := len(str1)
+	str2Len := len(str2)
+	// ret := make(map[string]int)
+	arrayMap := make([][]int, str1Len)
+	ret2 := ""
+	for i := 0; i < str1Len; i++ {
+		arrayMap[i] = make([]int, str2Len)
+	}
+
+	z := 0
+	for i := 1; i < str1Len; i++ {
+		for j := 1; j < str2Len; j++ {
+			if str1[i] == str2[j] {
+				if i == 1 || j == 1 {
+					arrayMap[i][j] = 1
+				} else {
+					arrayMap[i][j] = arrayMap[i-1][j-1] + 1
+				}
+				if arrayMap[i][j] > z {
+					z = arrayMap[i][j]
+					ret2 = string(str1[i-z+1 : i+1])
+					// ret[string(str1[i-z+1:i+1])]++
+				} else if arrayMap[i][j] == z {
+					// ret[string(str1[i-z+1:i+1])]++
+					ret2 = string(str1[i-z+1 : i+1])
+				}
+			} else {
+				arrayMap[i][j] = 0
+			}
+		}
+	}
+	// fmt.Println(arrayMap)
+	for _, value := range arrayMap {
+		fmt.Println(value)
+	}
+	return ret2
+}
+
+/**
+我们知道，回文是以它的中心点为镜像，因此，回文是可以由其中心点展开的，所以，这里只有2n-1个这样的中心点
+
+time: O(n^2)
+*/
+func longestPalindrome_4(s string) string {
+	start, end := 0, 0
+	for i := 0; i < len(s); i++ {
+		len1 := expandAroundCenter(s, i, i)
+		len2 := expandAroundCenter(s, i, i+1)
+		len := int(math.Max(float64(len1), float64(len2)))
+
+		if len > end-start {
+			start = i - (len-1)/2
+			end = i + len/2
+		}
+	}
+	fmt.Println(start, end)
+	return s[start : end+1]
+}
+
+func expandAroundCenter(s string, left int, right int) int {
+	L := left
+	R := right
+	for L >= 0 && R < len(s) && s[L] == s[R] {
+		L--
+		R++
+	}
+	return R - L - 1
+}
+
 func main() {
-	fmt.Println(longestPalindrome("eabcb"))
+	// fmt.Println(longestPalindrome("eabcb"))
+	fmt.Println(longestPalindrome_4("abacd"))
+
 }
