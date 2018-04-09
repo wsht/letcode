@@ -138,8 +138,69 @@ func expandAroundCenter(s string, left int, right int) int {
 	return R - L - 1
 }
 
+/**
+An O(N) Solution (Manacher’s Algorithm):
+https://articles.leetcode.com/longest-palindromic-substring-part-ii/
+todo understand
+*/
+
+func preProcess(s string) string {
+	n := len(s)
+	if n == 0 {
+		return "^$"
+	}
+
+	ret := "^"
+	for i := 0; i < n; i++ {
+		ret += "#" + string(s[i])
+	}
+	ret += "#$"
+	return ret
+}
+
+func longestPalindrome_5(s string) string {
+	T := preProcess(s)
+	n := len(T)
+	p := make([]int, n)
+	C, R := 0, 0
+
+	for i := 1; i < n-1; i++ {
+		i_mirror := 2*C - i
+
+		if R > i {
+			p[i] = int(math.Min(float64(R-i), float64(p[i_mirror])))
+		} else {
+			p[i] = 0
+		}
+
+		//Attempt to expand palidrome centered at i
+		for T[i+1+p[i]] == T[i-1-p[i]] {
+			p[i]++
+		}
+
+		//if palindrome centered at i expand past R
+		//adjust center based on expanded palindrome
+		if i+p[i] > R {
+			C = i
+			R = i + p[i]
+		}
+	}
+
+	maxLen := 0
+	centerIndex := 0
+	for i := 0; i < n-1; i++ {
+		if p[i] > maxLen {
+			maxLen = p[i]
+			centerIndex = i
+		}
+	}
+	fmt.Println(p)
+	fmt.Println(centerIndex, maxLen)
+	return s[(centerIndex-1-maxLen)/2 : (centerIndex-1+maxLen)/2]
+}
+
 func main() {
 	// fmt.Println(longestPalindrome("eabcb"))
-	fmt.Println(longestPalindrome_4("abacd"))
-
+	// fmt.Println(longestPalindrome_4("abacd"))
+	fmt.Println(longestPalindrome_5("babcbabcbaccba"))
 }
