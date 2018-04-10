@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -39,13 +38,13 @@ func myAtoi(s string) int {
 	return base * sign
 }
 
-func main() {
-	// result, err := strconv.Atoi("123456")
+// func main() {
+// 	// result, err := strconv.Atoi("123456")
 
-	// if err != nil {
-	// 	fmt.Println(err)
-	// } else {
-	// 	fmt.Println(result)
-	// }
-	fmt.Println(myAtoi("2147483648"))
-}
+// 	// if err != nil {
+// 	// 	fmt.Println(err)
+// 	// } else {
+// 	// 	fmt.Println(result)
+// 	// }
+// 	fmt.Println(myAtoi("2147483648"))
+// }
