@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -94,6 +93,6 @@ func trap4(height []int) int {
 	return ans
 }
 
-func main() {
-	fmt.Println(trap3([]int{1, 2, 3, 4}))
-}
+// func main() {
+// 	fmt.Println(trap3([]int{1, 2, 3, 4}))
+// }

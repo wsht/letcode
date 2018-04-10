@@ -6,26 +6,13 @@ import (
 )
 
 func intToRoman(num int) string {
-
-	if num == 0 {
+	if num == 0 || num > 4000 {
 		return ""
 	}
 
-	if num > 4000 {
-		return ""
-	}
-
-	numCopy := num
-	pow := 0
-	for numCopy/10 > 0 {
-		pow++
-		numCopy /= 10
-	}
-
-	result := ""
-
+	pow := integerLens(num) - 1
 	max := int(math.Pow10(pow))
-
+	result := ""
 	for max >= 1 {
 		value := num / max
 		num = num % max
@@ -35,56 +22,49 @@ func intToRoman(num int) string {
 		} else {
 			result += switchRoman(max, (value/5)*5) + switchRoman(max, value%5)
 		}
-
 		max /= 10
 	}
 
 	return result
 }
 
+func integerLens(num int) int {
+	iLen := 1
+	for num/10 > 0 {
+		iLen++
+		num /= 10
+	}
+	return iLen
+}
+
 func switchRoman(max int, value int) string {
+	defaultChar := ""
 	switch max {
 	case 1000:
 		//the value is less than 3999 so just return M
-		char := "M"
-		ret := ""
-		for i := 0; i < value; i++ {
-			ret += char
-		}
-		return ret
+		defaultChar = "M"
 	case 100:
-		char := "C"
 		if value == 5 {
 			return "D"
 		}
-		ret := ""
-		for i := 0; i < value; i++ {
-			ret += char
-		}
-		return ret
+		defaultChar = "C"
 	case 10:
-		char := "X"
 		if value == 5 {
 			return "L"
 		}
-		ret := ""
-		for i := 0; i < value; i++ {
-			ret += char
-		}
-		return ret
+		defaultChar = "X"
 	case 1:
-		char := "I"
 		if value == 5 {
 			return "V"
 		}
-		ret := ""
-		for i := 0; i < value; i++ {
-			ret += char
-		}
-		return ret
+		defaultChar = "I"
+	}
+	result := ""
+	for i := 0; i < value; i++ {
+		result += defaultChar
 	}
 
-	return ""
+	return result
 }
 
 func main() {
