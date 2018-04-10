@@ -28,7 +28,3 @@ func maxArea(height []int) int {
 
 	return maxarea
 }
-
-func main() {
-
-}
