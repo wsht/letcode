@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -67,6 +66,6 @@ func switchRoman(max int, value int) string {
 	return result
 }
 
-func main() {
-	fmt.Println(intToRoman(3999))
-}
+// func main() {
+// 	fmt.Println(intToRoman(3999))
+// }
