@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 func longestCommonPrefix(strs []string) string {
 	if len(strs) == 0 {
 		return ""
@@ -46,7 +42,7 @@ func longestCommonPrefix2(strs []string) string {
 	return ""
 }
 
-func main() {
-	strs := []string{"aa", "a"}
-	fmt.Println(longestCommonPrefix2(strs))
-}
+// func main() {
+// 	strs := []string{"aa", "a"}
+// 	fmt.Println(longestCommonPrefix2(strs))
+// }
