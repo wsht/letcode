@@ -1,0 +1,25 @@
+<html>
+<style>
+    .container {
+        height: 760px;
+        background: url('data:image/svg+xml;utf8,<svg width="1440" height="760" viewBox="0 0 1440 760" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M677.112 54.1657C400.36 -43.9336 110.391 13.291 0 54.1657V760H1440V54.1657C1301.02 95.0404 953.865 152.265 677.112 54.1657Z"  fill="purple"/></svg>') top/100% no-repeat,
+        /*cover the bottom part with the same color*/
+        linear-gradient(purple, purple) bottom/ 100% calc(100% - 20vw) no-repeat,
+        green;
+    }
+    .test{
+        height: 54px;
+        background: url('data:image/svg+xml;utf8,<svg viewBox="0,0,640,54" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon fill="#333" points="640,0 640,54 328,54 320,38 312,54 0,54 0,0 "></polygon></svg>') no-repeat;
+        background-size: cover;
+    }
+</style>
+
+<body>
+    <div class="container"></div>
+    <svg viewBox="0,0,640,54" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon fill="#333" points="640,0 640,54 328,54 320,38 312,54 0,54 0,0 "></polygon>
+    </svg>
+    <div class="test"></div>
+</body>
+
+</html>
